@@ -39,6 +39,13 @@ public class ThemeParkTest {
         assertEquals(2,this.themePark.getAllReviewed().size());
     }
 
+    @Test
+    public void reportingReview(){
+        this.themePark.addNewReview(dodgems);
+        this.themePark.addNewReview(rollerCoaster);
+        assertEquals("Dodgems : 3, Rip & Saw : 5,", themePark.reportReviewed());
+    }
+
 
 
 }
