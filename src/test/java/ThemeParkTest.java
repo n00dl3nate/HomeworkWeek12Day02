@@ -68,9 +68,28 @@ public class ThemeParkTest {
     }
 
     @Test
-    public void TestVisit(){
-        String result = themePark.visit(rollerCoaster,visitor);
-        assertEquals("Visited Attraction",result);
+    public void TestVisitAttraction(){
+        String result1 = themePark.visit(rollerCoaster,visitor);
+        assertEquals("Visited Attraction",result1);
         assertEquals(91.20,visitor.getMoney(),0.01);
+
+        String result2 = themePark.visit(rollerCoaster,youngVisitor);
+        assertEquals("Not Allowed",result2);
+        assertEquals(20,youngVisitor.getMoney(),0.01);
     }
+
+    @Test
+    public void TestVisitStall(){
+        String result1 = themePark.visit(iceCreamStall,visitor);
+        assertEquals("Visited Stall",result1);
+        assertEquals(97.20,visitor.getMoney(),0.01);
+
+        String result2 = themePark.visit(tobaccoStall,youngVisitor);
+        assertEquals("Not Allowed",result2);
+        assertEquals(20,youngVisitor.getMoney(),0.01);
+    }
+
+
+
+
 }

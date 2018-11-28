@@ -1,8 +1,9 @@
 package Stalls;
 
+import Interfaces.Iticketed;
 import Visitor.Visitor;
 
-public class TobaccoStall extends Stall  {
+public class TobaccoStall extends Stall {
 
     public TobaccoStall(int rating ,String name,String ownerName,String parkingSpot){
         super(rating,name,ownerName,parkingSpot);
@@ -16,4 +17,15 @@ public class TobaccoStall extends Stall  {
             return false;
         }
     }
+
+    public double price(){
+        return 6.60;
+    }
+
+    public double priceForCustomer(Visitor visitor){
+        return price();
+
+    }
+
+
 }

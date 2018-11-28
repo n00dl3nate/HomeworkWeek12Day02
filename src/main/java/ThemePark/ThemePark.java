@@ -62,12 +62,16 @@ public class ThemePark implements Isecurity {
 
     public String visit(Isecurity attraction, Visitor visitor) {
         boolean allowed = attraction.isAllowedTo(visitor);
-
         if (allowed == true) {
             if (attraction instanceof Attraction) {
                 double cost = (((Iticketed) attraction).priceForCustomer(visitor));
                 visitor.setMoney(visitor.getMoney() - cost);
                 return "Visited Attraction";
+            }
+            if (attraction instanceof Stall) {
+                double cost = (((Iticketed) attraction).priceForCustomer(visitor));
+                visitor.setMoney(visitor.getMoney() - cost);
+                return "Visited Stall";
             }
         }
        return "Not Allowed";

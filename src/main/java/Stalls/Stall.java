@@ -3,10 +3,11 @@ package Stalls;
 
 import Interfaces.Ireviewed;
 import Interfaces.Isecurity;
+import Interfaces.Iticketed;
 import ThemePark.ThemePark;
 import Visitor.Visitor;
 
-public abstract class Stall extends ThemePark implements Ireviewed, Isecurity {
+public abstract class Stall extends ThemePark implements Ireviewed, Isecurity, Iticketed {
 
     protected String name;
     protected String ownerName;
