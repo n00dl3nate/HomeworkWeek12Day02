@@ -5,6 +5,7 @@ import Stalls.CandyFlossStall;
 import Stalls.IceCreamStall;
 import Stalls.TobaccoStall;
 import ThemePark.ThemePark;
+import Visitor.Visitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +20,9 @@ public class ThemeParkTest {
     CandyFlossStall candyFlossStall;
     IceCreamStall iceCreamStall;
     TobaccoStall tobaccoStall;
+    Visitor visitor;
+    Visitor giantVisitor;
+    Visitor youngVisitor;
 
 
     @Before
@@ -30,6 +34,10 @@ public class ThemeParkTest {
         iceCreamStall = new IceCreamStall(5,"Ice Ice Baby","Bob","2");
         tobaccoStall = new TobaccoStall(1,"Kush","Afroman","3");
         themePark = new ThemePark(4);
+        visitor = new Visitor(20,100.00,170);
+        giantVisitor = new Visitor(30,400.00,220);
+        youngVisitor = new Visitor(11,20.00,145);
+
     }
 
     @Test
@@ -43,9 +51,26 @@ public class ThemeParkTest {
     public void reportingReview(){
         this.themePark.addNewReview(dodgems);
         this.themePark.addNewReview(rollerCoaster);
-        assertEquals("Dodgems : 3, Rip & Saw : 5,", themePark.reportReviewed());
+        String result = themePark.reportReviewed();
+        assertEquals("Dodgems : 3, Rip & Saw : 5, ",result );
     }
 
+    @Test
+    public void checkAllowed(){
+        this.themePark.addNewReview(dodgems);
+        this.themePark.addNewReview(rollerCoaster);
+        this.themePark.addNewReview(tobaccoStall);
+        this.themePark.addNewReview(playGround);
+        int result1 = themePark.getAllAllowedFor(visitor).size();
+        int result2 = themePark.getAllAllowedFor(youngVisitor).size();
+        assertEquals(3,result1);
+        assertEquals(2,result2);
+    }
 
-
+    @Test
+    public void TestVisit(){
+        String result = themePark.visit(rollerCoaster,visitor);
+        assertEquals("Visited Attraction",result);
+        assertEquals(91.20,visitor.getMoney(),0.01);
+    }
 }

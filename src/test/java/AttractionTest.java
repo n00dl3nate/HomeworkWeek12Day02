@@ -100,6 +100,11 @@ public class AttractionTest {
         assertEquals(false,rollerCoaster.isAllowedTo(youngVisitor));
     }
 
+    @Test
+    public void canVisitPlayground(){
+        assertEquals(false,playGround.isAllowedTo(visitor));
+    }
+
 
 
 
